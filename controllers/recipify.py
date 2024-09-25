@@ -15,8 +15,8 @@ class Recipe(typing.TypedDict):
     name: str
     description: str
     diet: str
-    servings: str 
-    calories: str  
+    servings: int
+    calories: int  
     allergies: list[str]
     ingredients: list[str]
     preparation_steps: list[str]
@@ -30,10 +30,10 @@ def recipify(text: str, tries= 0, max_retries = 3) -> str:
         Based on the following recipe essay, create a structured recipe with the following information:
         1. A brief description of the dish
         2. The diet type (e.g., vegetarian, vegan, omnivore)
-        3. Number of servings
-        4. Estimated calories per serving
+        3. Number of servings (integer)
+        4. Estimated calories per serving (integer)
         5. A link (use a placeholder like 'https://example.com/pancake-recipe')
-        6. Any potential allergies
+        6. A list of potential allergies
         7. A list of ingredients with quantities
         8. Step-by-step instructions (Ignore useless information that isn't part of the recipe)
 
