@@ -4,14 +4,12 @@ from pathlib import Path
 from dotenv import load_dotenv
 import typing_extensions as typing
 import json
-import re
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / "../.env")
 
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-
 
 class Recipe(typing.TypedDict):
     name: str
@@ -47,12 +45,10 @@ def recipify(text: str, tries= 0, max_retries = 3) -> str:
         """
 
         model = genai.GenerativeModel("gemini-1.5-flash")
-
         response = model.generate_content(prompt)
 
         content = response.text
         content = content.replace("```json", "").replace("```", "").strip()
-        
         
         parsed_result = json.loads(content)
 
